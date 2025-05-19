@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Schedule an Email</title>
+  <style>
+    body { font-family: Arial; background-color: #f2f2f2; padding: 40px; }
+    .container { background: #fff; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+    button { background: #007BFF; color: white; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .flash { padding: 10px; margin-bottom: 15px; border-radius: 5px; }
+    .success { background-color: #d4edda; color: #155724; }
+    .danger { background-color: #f8d7da; color: #721c24; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📧 Schedule an Email</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    {% endwith %}
+    <form method="POST">
+      <label>Sender Email:</label>
+      <input type="email" name="sender" required>
+
+      <label>Sender App Password:</label>
+      <input type="password" name="password" required>
+
+      <label>Receiver Email:</label>
+      <input type="email" name="receiver" required>
+
+      <label>Subject:</label>
+      <input type="text" name="subject" required>
+
+      <label>Message:</label>
+      <textarea name="body" rows="4" required></textarea>
+
+      <label>Send At (Date & Time):</label>
+      <input type="datetime-local" name="send_at" required>
+
+      <button type="submit">📤 Schedule Email</button>
+    </form>
+  </div>
+</body>
+</html>
